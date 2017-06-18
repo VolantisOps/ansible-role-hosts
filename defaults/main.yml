@@ -1,7 +1,7 @@
 ---
-hostsfile_ignore_auto: []
+hosts_ignore_auto: []
 #  - hostname
 
-hostsfile_manual: []
+hosts_manual: []
 #  - name: hostname
 #    interface: eth0

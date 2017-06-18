@@ -6,7 +6,7 @@
     line: "{{ hostvars[item].ansible_default_ipv4.address }} {{item}}"
     state: present
   when: "hostvars[item].ansible_default_ipv4.address is defined and item != ansible_hostname"
-  with_items: "{{ groups['all'] | difference(hostsfile_ignore_auto) }}"
+  with_items: "{{ groups['all'] | difference(hosts_ignore_auto) }}"
 
 - name: "Ensure manually-defined hosts exist in /etc/hosts"
   lineinfile:
@@ -15,7 +15,7 @@
     line: "{{ hostvars[item.name]['ansible_' + item.interface].ipv4.address}} {{ hostvars[item.name].ansible_hostname }}"
     state: present
   when: "hostvars[item.name].ansible_hostname != ansible_hostname"
-  with_items: "{{ hostsfile_manual }}"
+  with_items: "{{ hosts_manual }}"
 
 - name: "Ensure local host is defined for IPv4"
   lineinfile:
